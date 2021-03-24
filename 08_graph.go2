@@ -1,0 +1,22 @@
+package main
+
+type Edge[N any] interface {
+	Nodes() (from, to N)
+}
+
+type Node[E any] interface {
+	Edges() []E
+}
+
+type Graph[N Node[E], E Edge[N]] struct {
+	nodes []N
+}
+
+func NewGraph[N Node[E], E Edge[N]](nodes []N) *Graph[N, E] {
+	return &Graph[N, E]{
+		nodes: nodes,
+	}
+}
+
+func main() {
+}

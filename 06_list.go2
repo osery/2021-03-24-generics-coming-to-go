@@ -1,0 +1,10 @@
+package main
+
+type List[T any] struct {
+	value T
+	next  *List[T]
+}
+
+func main() {
+
+}

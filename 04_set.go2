@@ -1,0 +1,36 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+type Set[T comparable] map[T]bool
+
+func NewSet[T comparable](items ...T) Set[T] {
+	result := make(Set[T], len(items))
+	for _, v := range items {
+		result[v] = true
+	}
+	return result
+}
+
+func (s Set[T]) String() string {
+	var b strings.Builder
+	first := true
+	b.WriteString("(")
+	for k, _ := range s {
+		if !first {
+			b.WriteString(", ")
+		}
+		b.WriteString(fmt.Sprintf("%v", k))
+		first = false
+	}
+	b.WriteString(")")
+	return b.String()
+}
+
+func main() {
+	fmt.Printf("%v\n", NewSet(1, 2, 3, 1))
+	fmt.Printf("%v\n", NewSet("a", "b", "a"))
+}
