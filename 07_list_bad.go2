@@ -5,8 +5,8 @@ import (
 )
 
 type List[T1, T2 any] struct {
-	v1   T1
-	v2   T2
+	v1 T1
+	v2 T2
 	// NOTE: The proposal actually forbids this.
 	next *List[T2, T1]
 }

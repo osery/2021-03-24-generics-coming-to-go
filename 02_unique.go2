@@ -1,0 +1,22 @@
+package main
+
+import (
+	"fmt"
+)
+
+func Unique[T comparable](items ...T) []T {
+	seen := make(map[T]bool, len(items))
+	result := make([]T, 0, len(items))
+	for _, v := range items {
+		if seen[v] {
+			continue
+		}
+		seen[v] = true
+		result = append(result, v)
+	}
+	return result
+}
+
+func main() {
+	fmt.Printf("%v\n", Unique(1, 1, 1, 2, 3, 1, 2))
+}
