@@ -2,21 +2,18 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 )
 
-func Unique[T comparable](items ...T) []T {
-	seen := make(map[T]bool, len(items))
-	result := make([]T, 0, len(items))
-	for _, v := range items {
-		if seen[v] {
-			continue
-		}
-		seen[v] = true
-		result = append(result, v)
+func Pick[T any](items ...T) T {
+	if len(items) == 0 {
+		panic("nothing to pick from")
 	}
-	return result
+	i := rand.Intn(len(items))
+	return items[i]
 }
 
 func main() {
-	fmt.Printf("%v\n", Unique(1,1,1,2,3,1,2))
+	rand.Seed(42)
+	fmt.Printf("%v\n", Pick(1, 2, 3, 4, 5, 6, 7))
 }
